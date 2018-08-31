@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-patient-heading">Create or edit a Patient</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!patient.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="patient.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="patient.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                        [(ngModel)]="patient.phone" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_age">Age</label>
+                    <input type="number" class="form-control" name="age" id="field_age"
+                        [(ngModel)]="patient.age" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_isNew">Is New</label>
+                    <input type="checkbox" class="form-control" name="isNew" id="field_isNew"
+                        [(ngModel)]="patient.isNew" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cheifComplaints">Cheif Complaints</label>
+                    <input type="text" class="form-control" name="cheifComplaints" id="field_cheifComplaints"
+                        [(ngModel)]="patient.cheifComplaints" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_onSet">On Set</label>
+                    <input type="text" class="form-control" name="onSet" id="field_onSet"
+                        [(ngModel)]="patient.onSet" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_hOPI">H OPI</label>
+                    <input type="text" class="form-control" name="hOPI" id="field_hOPI"
+                        [(ngModel)]="patient.hOPI" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_familyHistory">Family History</label>
+                    <input type="text" class="form-control" name="familyHistory" id="field_familyHistory"
+                        [(ngModel)]="patient.familyHistory" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_preMorbidPersonality">Pre Morbid Personality</label>
+                    <input type="text" class="form-control" name="preMorbidPersonality" id="field_preMorbidPersonality"
+                        [(ngModel)]="patient.preMorbidPersonality" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_summary">Summary</label>
+                    <input type="text" class="form-control" name="summary" id="field_summary"
+                        [(ngModel)]="patient.summary" />
+                </div>
+
+                <div class="form-group">
+                    <label for="field_diagnosis">Diagnosis</label>
+                    <select class="form-control" id="field_diagnosis" multiple name="diagnosis" [(ngModel)]="patient.diagnoses">
+                        <option [ngValue]="getSelected(patient.diagnoses, diagnosisOption)" *ngFor="let diagnosisOption of diagnoses; trackBy: trackDiagnosisById">{{diagnosisOption.diagnosisName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

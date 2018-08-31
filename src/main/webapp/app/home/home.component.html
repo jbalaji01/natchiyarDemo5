@@ -10,6 +10,20 @@
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span id="home-logged-message" *ngIf="account"
                    > You are logged in as user "{{account.login}}". </span>
+
+                   <h2>Queue <span class="badge badge-pill badge-default">{{ patients?.length || '0' }}</span></h2>
+
+                   <div class="table-responsive" *ngIf="patients">
+                    <table class="table table-striped">
+                            <tr *ngFor="let patient of patients ;trackBy: trackId">
+                                    <td><a [routerLink]="['/patient', patient.id, 'view' ]">{{patient.id}}</a></td>
+                                    <td>
+                                            <span *ngIf="patient.isNew" class="badge badge-pill badge-info">New</span>
+                                    </td>
+                                    <td>{{patient.name}}</td>
+                            </tr>
+                        </table>
+                        </div>
             </div>
 
             <div class="alert alert-warning" *ngSwitchCase="false">
@@ -21,7 +35,7 @@
                 <a class="alert-link" routerLink="register">Register a new account</a>
             </div>
         </div>
-
+<!-- 
         <p>
             If you have any question on JHipster:
         </p>
@@ -36,6 +50,6 @@
 
         <p>
             <span>If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener">GitHub</a>!
-        </p>
+        </p> -->
     </div>
 </div>

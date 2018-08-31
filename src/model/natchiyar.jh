@@ -1,0 +1,35 @@
+
+entity Patient {
+    name String,
+    phone String,
+    age Integer,
+    isNew Boolean,
+    
+    cheifComplaints String,
+    onSet String,
+    HOPI String,
+    
+    familyHistory String,
+    preMorbidPersonality String,
+    summary String,
+}
+
+entity Visit {
+	visitDate Instant,
+    MSE String,
+    physicalExamination String,
+    
+    treatment String
+}
+
+entity Diagnosis {
+	diagnosisName String
+}
+
+relationship OneToMany {
+	Patient{visit} to Visit{patient(name)}
+}
+
+relationship ManyToMany {
+     Patient{diagnosis(diagnosisName)} to Diagnosis{patient(name)}
+}

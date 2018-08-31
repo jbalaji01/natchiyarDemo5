@@ -1,0 +1,27 @@
+{
+    "name": "Diagnosis",
+    "fields": [
+        {
+            "fieldName": "diagnosisName",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "patient",
+            "otherEntityName": "patient",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "diagnosis"
+        }
+    ],
+    "changelogDate": "20180830170151",
+    "entityTableName": "diagnosis",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

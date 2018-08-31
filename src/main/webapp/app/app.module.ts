@@ -16,6 +16,7 @@ import { NatchiyarDemo5AppRoutingModule } from './app-routing.module';
 import { NatchiyarDemo5HomeModule } from './home/home.module';
 import { NatchiyarDemo5AccountModule } from './account/account.module';
 import { NatchiyarDemo5EntityModule } from './entities/entity.module';
+import { NatchiyarDemo5primengModule } from './primeng/primeng.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
 
@@ -28,7 +29,8 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         NatchiyarDemo5CoreModule,
         NatchiyarDemo5HomeModule,
         NatchiyarDemo5AccountModule,
-        NatchiyarDemo5EntityModule
+        NatchiyarDemo5EntityModule,
+        NatchiyarDemo5primengModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
