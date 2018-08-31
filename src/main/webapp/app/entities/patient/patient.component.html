@@ -1,0 +1,78 @@
+<div>
+    <h2 id="page-heading">
+        <span>Patients</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-patient" [routerLink]="['/patient/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Patient
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="patients">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Phone</span></th>
+            <th><span>Age</span></th>
+            <th><span>Is New</span></th>
+            <th><span>Cheif Complaints</span></th>
+            <th><span>On Set</span></th>
+            <th><span>H OPI</span></th>
+            <th><span>Family History</span></th>
+            <th><span>Pre Morbid Personality</span></th>
+            <th><span>Summary</span></th>
+            <th><span>Diagnosis</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let patient of patients ;trackBy: trackId">
+                <td><a [routerLink]="['/patient', patient.id, 'view' ]">{{patient.id}}</a></td>
+                <td>{{patient.name}}</td>
+                <td>{{patient.phone}}</td>
+                <td>{{patient.age}}</td>
+                <td>{{patient.isNew}}</td>
+                <td>{{patient.cheifComplaints}}</td>
+                <td>{{patient.onSet}}</td>
+                <td>{{patient.hOPI}}</td>
+                <td>{{patient.familyHistory}}</td>
+                <td>{{patient.preMorbidPersonality}}</td>
+                <td>{{patient.summary}}</td>
+                <td>
+                    <span *ngFor="let diagnosis of patient.diagnoses; let last = last">
+                            <a class="form-control-static" [routerLink]="['../diagnosis', diagnosis?.id, 'view' ]">{{diagnosis.diagnosisName}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/patient', patient.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/patient', patient.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'patient/'+ patient.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

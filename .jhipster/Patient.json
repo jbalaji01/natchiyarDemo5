@@ -1,0 +1,70 @@
+{
+    "name": "Patient",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "age",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "isNew",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "cheifComplaints",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "onSet",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "hOPI",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "familyHistory",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "preMorbidPersonality",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "summary",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "visit",
+            "otherEntityName": "visit",
+            "otherEntityRelationshipName": "patient"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "patient",
+            "relationshipName": "diagnosis",
+            "otherEntityName": "diagnosis",
+            "otherEntityField": "diagnosisName",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20180830170149",
+    "entityTableName": "patient",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

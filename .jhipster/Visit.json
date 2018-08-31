@@ -1,0 +1,38 @@
+{
+    "name": "Visit",
+    "fields": [
+        {
+            "fieldName": "visitDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "mSE",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "physicalExamination",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "treatment",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "patient",
+            "otherEntityName": "patient",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20180830170150",
+    "entityTableName": "visit",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
