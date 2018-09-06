@@ -1,9 +1,17 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="patient">
-            <h2><span>Patient</span> {{patient.id}}</h2>
+            <h2><span>{{patient.name}}</span> ({{patient.id}})</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
+
+            <p-accordion [multiple]="true">
+
+            <p-accordionTab>
+                    <p-header>
+                            <fa-icon [icon]="'asterisk'" class="icon-ast-color"></fa-icon>
+                            <span>Demographic details</span>
+                        </p-header>
             <dl class="row-md jh-entity-details">
                 <dt><span>Name</span></dt>
                 <dd>
@@ -21,6 +29,15 @@
                 <dd>
                     <span>{{patient.isNew}}</span>
                 </dd>
+            </dl>
+            </p-accordionTab>
+
+            <p-accordionTab >
+                    <p-header>
+                            <fa-icon [icon]="'asterisk'" class="icon-ast-color"></fa-icon>
+                            <span>Cheif complaints and HOPI</span>
+                        </p-header>
+            <dl class="row-md jh-entity-details">
                 <dt><span>Cheif Complaints</span></dt>
                 <dd>
                     <span>{{patient.cheifComplaints}}</span>
@@ -33,6 +50,15 @@
                 <dd>
                     <span>{{patient.hOPI}}</span>
                 </dd>
+            </dl>
+            </p-accordionTab>
+
+            <p-accordionTab >
+                    <p-header>
+                            <fa-icon [icon]="'asterisk'" class="icon-ast-color"></fa-icon>
+                            <span>Family, Premorbid and summary</span>
+                        </p-header>
+            <dl class="row-md jh-entity-details">
                 <dt><span>Family History</span></dt>
                 <dd>
                     <span>{{patient.familyHistory}}</span>
@@ -45,6 +71,11 @@
                 <dd>
                     <span>{{patient.summary}}</span>
                 </dd>
+            </dl>
+            </p-accordionTab>
+        </p-accordion>
+
+            <dl class="row-md jh-entity-details">
                 <dt><span>Diagnosis</span></dt>
                 <dd>
                     <span *ngFor="let diagnosis of patient.diagnoses; let last = last">
@@ -52,6 +83,31 @@
                     </span>
                 </dd>
             </dl>
+
+        <p-accordion [multiple]="true">
+        <div *ngFor="let visit of visits ;">
+            <p-accordionTab>
+                <p-header>
+                    <fa-icon [icon]="'road'" class="icon-visit-color"></fa-icon>
+                    <span>visited on {{visit.visitDate | date:'medium'}}</span>
+                </p-header>
+                <dl class="row-md jh-entity-details">
+                        <dt><span>MSE</span></dt>
+                        <dd>
+                            <span>{{visit.mSE}}</span>
+                        </dd>
+                        <dt><span>Physical Examination</span></dt>
+                        <dd>
+                            <span>{{visit.physicalExamination}}</span>
+                        </dd>
+                        <dt><span>Treatment</span></dt>
+                        <dd>
+                            <span>{{visit.treatment}}</span>
+                        </dd>
+                </dl>
+            </p-accordionTab>
+        </div>
+        </p-accordion>
 
             <button type="submit"
                     (click)="previousState()"

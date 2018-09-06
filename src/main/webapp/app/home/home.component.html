@@ -3,8 +3,8 @@
         <span class="hipster img-fluid rounded"></span>
     </div>
     <div class="col-md-9">
-        <h1 class="display-4">Welcome, Java Hipster!</h1>
-        <p class="lead">This is your homepage</p>
+        <h1 class="display-4">Welcome, to Natchiyar!</h1>
+        <p class="lead">Minding Minds... Efficiently ...</p>
 
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
@@ -13,7 +13,7 @@
 
                    <h2>Queue <span class="badge badge-pill badge-default">{{ patients?.length || '0' }}</span></h2>
 
-                   <div class="table-responsive" *ngIf="patients">
+                   <div class="table-responsive">
                     <table class="table table-striped">
                             <tr *ngFor="let patient of patients ;trackBy: trackId">
                                     <td><a [routerLink]="['/patient', patient.id, 'view' ]">{{patient.id}}</a></td>

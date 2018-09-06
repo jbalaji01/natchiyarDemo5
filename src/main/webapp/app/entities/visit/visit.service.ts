@@ -45,6 +45,14 @@ export class VisitService {
             .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
     }
 
+    fetchVisitsOfPatient(patientId: number, req?: any) {
+        const options = createRequestOption(req);
+        const url = this.resourceUrl + '_of_patient/' + patientId;
+        return this.http
+            .get<IVisit[]>(url, { params: options, observe: 'response' })
+            .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+    }
+
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }

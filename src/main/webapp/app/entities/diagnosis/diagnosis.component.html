@@ -10,6 +10,12 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
+
+    <div class="col-md-4 content-section implementation">
+        <p-chart type="pie" [data]="data" #pieChart
+        *ngIf="visible"></p-chart>
+    </div>
+
     <div class="table-responsive" *ngIf="diagnoses">
         <table class="table table-striped">
             <thead>
@@ -17,12 +23,14 @@
             <th><span>ID</span></th>
             <th><span>Diagnosis Name</span></th>
             <th></th>
+            <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let diagnosis of diagnoses ;trackBy: trackId">
                 <td><a [routerLink]="['/diagnosis', diagnosis.id, 'view' ]">{{diagnosis.id}}</a></td>
                 <td>{{diagnosis.diagnosisName}}</td>
+                <td>{{diagnosis.patients?.length}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
