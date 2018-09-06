@@ -2,7 +2,9 @@ package com.neemshade.natchiyar.demo.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.neemshade.natchiyar.demo.domain.Diagnosis;
+import com.neemshade.natchiyar.demo.domain.Patient;
 import com.neemshade.natchiyar.demo.repository.DiagnosisRepository;
+import com.neemshade.natchiyar.demo.repository.PatientRepository;
 import com.neemshade.natchiyar.demo.web.rest.errors.BadRequestAlertException;
 import com.neemshade.natchiyar.demo.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -13,9 +15,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing Diagnosis.
@@ -29,9 +35,11 @@ public class DiagnosisResource {
     private static final String ENTITY_NAME = "diagnosis";
 
     private final DiagnosisRepository diagnosisRepository;
+    private final PatientRepository patientRepository;
 
-    public DiagnosisResource(DiagnosisRepository diagnosisRepository) {
+    public DiagnosisResource(DiagnosisRepository diagnosisRepository, PatientRepository patientRepository) {
         this.diagnosisRepository = diagnosisRepository;
+        this.patientRepository = patientRepository;
     }
 
     /**
@@ -85,10 +93,34 @@ public class DiagnosisResource {
     @Timed
     public List<Diagnosis> getAllDiagnoses() {
         log.debug("REST request to get all Diagnoses");
-        return diagnosisRepository.findAll();
+        List<Diagnosis> diagnosisList = diagnosisRepository.findAll();
+//        List<Diagnosis> diagnosisList = diagnosisRepository.findAllWithEagerRelationships();
+        
+//        fillPatients(diagnosisList);
+        return diagnosisList;
     }
 
-    /**
+    private void fillPatients(List<Diagnosis> diagnosisList) {
+    	
+    	Map<Long, Diagnosis> diagnosisMap = new HashMap<Long, Diagnosis>();
+    	for (Diagnosis diagnosis : diagnosisList) {
+			diagnosisMap.put(diagnosis.getId(), diagnosis);
+		}
+    	
+    	List<Patient> patients = patientRepository.findAllWithEagerRelationships();
+    	for (Iterator iterator = patients.iterator(); iterator.hasNext();) {
+			Patient patient = (Patient) iterator.next();
+			for (Diagnosis diagnosisP : patient.getDiagnoses()) {
+				Diagnosis diagnosisD = diagnosisMap.get(diagnosisP.getId());
+				if(diagnosisD == null) continue;
+				if(diagnosisD.getPatients() == null)
+					diagnosisD.setPatients((Set<Patient>) new ArrayList<Patient>());
+				diagnosisD.getPatients().add(patient);
+			}
+		}
+	}
+
+	/**
      * GET  /diagnoses/:id : get the "id" diagnosis.
      *
      * @param id the id of the diagnosis to retrieve

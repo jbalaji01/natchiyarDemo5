@@ -1,6 +1,9 @@
 package com.neemshade.natchiyar.demo.repository;
 
 import com.neemshade.natchiyar.demo.domain.Visit;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +15,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VisitRepository extends JpaRepository<Visit, Long> {
 
+	List<Visit> findByPatientIdOrderByVisitDateDesc(Long patientId);
 }

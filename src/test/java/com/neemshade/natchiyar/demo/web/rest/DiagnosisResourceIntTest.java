@@ -4,6 +4,7 @@ import com.neemshade.natchiyar.demo.NatchiyarDemo5App;
 
 import com.neemshade.natchiyar.demo.domain.Diagnosis;
 import com.neemshade.natchiyar.demo.repository.DiagnosisRepository;
+import com.neemshade.natchiyar.demo.repository.PatientRepository;
 import com.neemshade.natchiyar.demo.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -45,6 +46,8 @@ public class DiagnosisResourceIntTest {
     @Autowired
     private DiagnosisRepository diagnosisRepository;
 
+    @Autowired
+	private PatientRepository patientRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -65,7 +68,7 @@ public class DiagnosisResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final DiagnosisResource diagnosisResource = new DiagnosisResource(diagnosisRepository);
+        final DiagnosisResource diagnosisResource = new DiagnosisResource(diagnosisRepository, patientRepository);
         this.restDiagnosisMockMvc = MockMvcBuilders.standaloneSetup(diagnosisResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

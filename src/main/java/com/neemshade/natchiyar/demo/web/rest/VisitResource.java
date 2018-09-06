@@ -87,6 +87,18 @@ public class VisitResource {
         log.debug("REST request to get all Visits");
         return visitRepository.findAll();
     }
+    
+    /**
+     * GET  /visits : get all the visits of a given patient.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of visits in body
+     */
+    @GetMapping("/visits_of_patient/{patientId}")
+    @Timed
+    public List<Visit> getAllVisits(@PathVariable Long patientId) {
+        log.debug("REST request to get all Visits of a patient " + patientId);
+        return visitRepository.findByPatientIdOrderByVisitDateDesc(patientId);
+    }
 
     /**
      * GET  /visits/:id : get the "id" visit.

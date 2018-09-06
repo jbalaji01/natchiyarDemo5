@@ -9,6 +9,8 @@ import { ButtonModule } from 'primeng/components/button/button';
 import { WizardModule } from 'primeng-extensions/components/wizard/wizard.js';
 
 import { TabMenuDemoComponent, tabmenuDemoRoute } from './';
+import { DownloadsComponent } from './pages/downloads.component';
+import { OverviewComponent } from './pages/overview.component';
 
 const primeng_STATES = [tabmenuDemoRoute];
 
@@ -23,7 +25,7 @@ const primeng_STATES = [tabmenuDemoRoute];
         WizardModule,
         RouterModule.forRoot(primeng_STATES, { useHash: true })
     ],
-    declarations: [TabMenuDemoComponent],
+    declarations: [TabMenuDemoComponent, DownloadsComponent, OverviewComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class NatchiyarDemo5TabMenuDemoModule {}

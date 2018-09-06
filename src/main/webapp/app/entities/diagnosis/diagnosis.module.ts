@@ -12,10 +12,12 @@ import {
     diagnosisPopupRoute
 } from './';
 
+import { ChartModule } from 'primeng/primeng';
+
 const ENTITY_STATES = [...diagnosisRoute, ...diagnosisPopupRoute];
 
 @NgModule({
-    imports: [NatchiyarDemo5SharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [NatchiyarDemo5SharedModule, ChartModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         DiagnosisComponent,
         DiagnosisDetailComponent,
