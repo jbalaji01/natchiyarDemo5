@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { AccordionModule } from 'primeng/components/accordion/accordion';
 import { ButtonModule } from 'primeng/components/button/button';
 import { GrowlModule } from 'primeng/components/growl/growl';
-import { WizardModule } from 'primeng-extensions/components/wizard/wizard.js';
+// import { WizardModule } from 'primeng-extensions/components/wizard/wizard.js';
 
 import { AccordionDemoComponent, accordionDemoRoute } from './';
 
@@ -27,7 +27,7 @@ const primeng_STATES = [accordionDemoRoute];
         CheckboxModule,
         SelectButtonModule,
         ButtonModule,
-        WizardModule,
+        // WizardModule,
         RouterModule.forRoot(primeng_STATES, { useHash: true })
     ],
     declarations: [AccordionDemoComponent],
