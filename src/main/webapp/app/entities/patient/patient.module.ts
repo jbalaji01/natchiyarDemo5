@@ -9,7 +9,7 @@ import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton
 import { AccordionModule } from 'primeng/components/accordion/accordion';
 import { ButtonModule } from 'primeng/components/button/button';
 import { GrowlModule } from 'primeng/components/growl/growl';
-import { WizardModule } from 'primeng-extensions/components/wizard/wizard.js';
+// import { WizardModule } from 'primeng-extensions/components/wizard/wizard.js';
 import { FormsModule } from '@angular/forms';
 
 import { NatchiyarDemo5SharedModule } from 'app/shared';
@@ -35,7 +35,7 @@ const ENTITY_STATES = [...patientRoute, ...patientPopupRoute];
         CheckboxModule,
         SelectButtonModule,
         ButtonModule,
-        WizardModule,
+        // WizardModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
